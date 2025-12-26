@@ -1,0 +1,39 @@
+<div class="page">
+  <div class="header">
+    <h2>Gimnasios - ({{gyms.length}})</h2>
+    <button class="btn primary" (click)="openModal()">+ Crear gimnasio</button>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th class="actions">Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @if(!isLoading()) { @if(gyms.length > 0){
+      <tr *ngFor="let gym of gyms">
+        <td (click)="goToClients(gym)" class="link">
+          {{ gym.name }}
+        </td>
+
+        <td class="actions">
+          <button class="btn" (click)="openModal(gym)">Editar</button>
+          <button class="btn danger" (click)="delete(gym)">Eliminar</button>
+        </td>
+      </tr>
+      } @else {
+      <tr>
+        <td colspan="2" class="empty">No hay gimnasios registrados</td>
+      </tr>
+      } } @else {
+      <tr>
+        <td colspan="2" class="empty">No hay gimnasios registrados</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+

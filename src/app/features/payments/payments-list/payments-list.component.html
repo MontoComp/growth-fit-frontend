@@ -1,0 +1,9 @@
+<h2>Pagos</h2>
+
+<ul>
+  <li *ngFor="let payment of payments">
+    S/ {{ payment.amount }} - válido hasta {{ payment.paid_until }}
+  </li>
+</ul>
+
+<button (click)="newPayment()">Registrar pago</button>

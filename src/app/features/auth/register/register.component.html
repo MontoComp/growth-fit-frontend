@@ -1,0 +1,71 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Crear cuenta</h2>
+    <p class="subtitle">Regístrate para gestionar tu gimnasio</p>
+
+    <form [formGroup]="form" (ngSubmit)="register()">
+
+      <!-- EMAIL -->
+      <div class="field">
+        <label>Correo electrónico</label>
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="correo@ejemplo.com"
+        />
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="field">
+        <label>Contraseña</label>
+        <input
+          type="password"
+          formControlName="password"
+          placeholder="Mínimo 6 caracteres"
+        />
+      </div>
+
+      <!-- DNI -->
+      <div class="field">
+        <label>DNI</label>
+        <input
+          formControlName="dni"
+          placeholder="Documento de identidad"
+        />
+      </div>
+
+      <!-- PHONE -->
+      <div class="field">
+        <label>Teléfono</label>
+
+        <div class="phone-row">
+          <select formControlName="country">
+            <option *ngFor="let c of countries" [value]="c.code">
+              {{ c.flag }} {{ c.prefix }}
+            </option>
+          </select>
+
+          <input
+            formControlName="phone"
+            placeholder="Número de teléfono"
+          />
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn-primary"
+        [disabled]="form.invalid || isLoading"
+      >
+        {{ isLoading ? 'Creando cuenta...' : 'Crear cuenta' }}
+      </button>
+    </form>
+
+    <div class="footer">
+      <span>¿Ya tienes cuenta?</span>
+      <button type="button" class="link" (click)="goToLogin()">
+        Iniciar sesión
+      </button>
+    </div>
+  </div>
+</div>

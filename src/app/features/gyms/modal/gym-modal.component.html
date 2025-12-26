@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <h5 class="modal-title">{{ gym ? 'Editar Gimnasio' : 'Crear Gimnasio' }}</h5>
+  <button type="button" class="btn-close" (click)="close()"></button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="form">
+    <div class="mb-3">
+      <label class="form-label">Nombre</label>
+      <input class="form-control" formControlName="name" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Dirección</label>
+      <input class="form-control" formControlName="address" />
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-secondary" (click)="close()">Cancelar</button>
+  <button class="btn btn-primary" (click)="save()" [disabled]="isSaving">
+    {{ isSaving ? 'Guardando...' : 'Guardar' }}
+  </button>
+</div>

@@ -1,0 +1,54 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Iniciar sesión</h2>
+    <p class="subtitle">Accede a tu panel de gimnasio</p>
+
+    <form [formGroup]="form" (ngSubmit)="login()">
+
+      <!-- EMAIL -->
+      <div class="field">
+        <label>Correo electrónico</label>
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="correo@ejemplo.com"
+        />
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="field">
+        <label>Contraseña</label>
+
+        <div class="password-row">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="Tu contraseña"
+          />
+          <button
+            type="button"
+            class="toggle"
+            (click)="togglePassword()"
+          >
+            {{ showPassword ? '🙈' : '👁️' }}
+          </button>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn-primary"
+        [disabled]="form.invalid || isLoading"
+      >
+        {{ isLoading ? 'Ingresando...' : 'Ingresar' }}
+      </button>
+    </form>
+
+    <div class="footer">
+      <span>¿No tienes cuenta?</span>
+      <button type="button" class="link" (click)="goToRegister()">
+        Crear cuenta
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<nav class="sidebar">
+  <!-- HEADER CON AVATAR -->
+  <div class="sidebar-header">
+    <div class="avatar">
+      {{ getInitials() }}
+    </div>
+    <div class="user-info">
+      <span class="email">{{ user().email }}</span>
+      <span class="role">{{ user().role }}</span>
+    </div>
+  </div>
+
+  <!-- NAVEGACIÓN -->
+  <ul class="menu">
+    <li (click)="navigate('/dashboard')">
+      <span class="icon">🏠</span> Dashboard
+    </li>
+    <li (click)="navigate('/gyms')">
+      <span class="icon">🏋️‍♂️</span> Gimnasios
+    </li>
+    <!-- Puedes agregar más rutas si lo deseas -->
+  </ul>
+
+  <!-- FOOTER LOGOUT -->
+  <div class="sidebar-footer" (click)="logout()">
+    <span class="icon">🚪</span> Cerrar sesión
+  </div>
+</nav>

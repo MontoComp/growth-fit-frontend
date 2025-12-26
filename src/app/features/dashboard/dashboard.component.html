@@ -1,0 +1,70 @@
+<div class="dashboard">
+  <!-- HEADER -->
+  <div class="header">
+    <h2>Dashboard</h2>
+    <p class="subtitle">Resumen general de tu negocio</p>
+  </div>
+
+  @if(!isLoading()) {
+  <!-- STATS -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="label">Gimnasios</span>
+      <span class="value">{{ stats.gyms }}</span>
+    </div>
+
+    <div class="stat-card">
+      <span class="label">Clientes activos</span>
+      <span class="value">{{ stats.activeClients }}</span>
+    </div>
+
+    <div class="stat-card">
+      <span class="label">Ingresos</span>
+      <span class="value">S/ {{ stats.revenue }}</span>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content-grid">
+    <!-- CHART -->
+    <div class="card">
+      <h3>Ingresos recientes</h3>
+      <!--<apx-chart
+          [series]="chartOptions.series"
+          [chart]="chartOptions.chart"
+          [xaxis]="chartOptions.xaxis"
+          [stroke]="chartOptions.stroke"
+          [dataLabels]="chartOptions.dataLabels"
+          [tooltip]="chartOptions.tooltip"
+          [title]="chartOptions.title"
+        ></apx-chart>-->
+      <div class="chart-placeholder">📈 Gráfico aquí</div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="card">
+      <h3>Últimos pagos</h3>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Cliente</th>
+            <th>Monto</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let p of lastPayments">
+            <td>{{ p.clientName }}</td>
+            <td>S/ {{ p.amount }}</td>
+            <td>{{ p.date | date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  } @else {
+  <div class="loading-placeholder">Cargando estadísticas...</div>
+  }
+</div>
