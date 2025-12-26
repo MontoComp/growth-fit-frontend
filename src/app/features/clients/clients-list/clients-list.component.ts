@@ -1,38 +1,76 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientsService } from '../../../core/services/clients.service';
+import { firstValueFrom } from 'rxjs';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ClientModalComponent } from '../modal/client-modal.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  selector: 'app-clients-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgbModule],
   templateUrl: './clients-list.component.html',
-  styleUrl: './clients-list.component.scss'
+  styleUrl: './clients-list.component.scss',
 })
 export class ClientsListComponent implements OnInit {
+  private modalService = inject(NgbModal);
+  private clientsService = inject(ClientsService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
-  private clientsService = inject(ClientsService);
 
   gymId!: string;
   clients: any[] = [];
+  isLoading = signal(false);
+
+  selectedClient: any = null;
 
   ngOnInit() {
-    this.gymId = this.route.snapshot.paramMap.get('gymId')!;
+    console.log('Initializing ClientsListComponent');
+    this.gymId = String(this.route.snapshot.paramMap.get('gymId'));
     this.loadClients();
   }
 
-  loadClients() {
-    this.clientsService.getClientsByGym(this.gymId).subscribe(data => {
-      this.clients = data;
+  async loadClients() {
+    this.isLoading.set(true);
+    try {
+      const result = await firstValueFrom(this.clientsService.getClientsByGym(this.gymId));
+      this.clients = result;
+    } catch (err) {
+      console.error(err);
+    } finally {
+      this.isLoading.set(false);
+    }
+  }
+
+  delete(client: any) {
+    if (!confirm(`¿Eliminar el cliente "${client.name}"?`)) return;
+
+    this.clientsService.deleteClient(client.id).subscribe(() => {
+      this.loadClients();
     });
   }
 
-  openPayments(client: any) {
-    this.router.navigate(['/clients', client.id, 'payments']);
+  openModal(client: any = null) {
+    this.selectedClient = client;
+
+    const modalRef = this.modalService.open(ClientModalComponent, {
+      size: 'lg',
+      backdrop: 'static',
+    });
+    modalRef.componentInstance.client = client;
+    modalRef.componentInstance.gymId = this.gymId;
+
+    modalRef.closed.subscribe((refresh: boolean) => {
+      if (refresh) this.loadClients();
+    });
   }
 
-  createClient() {
-    this.router.navigate(['/gyms', this.gymId, 'clients/create']);
+  goToPayments(client: any) {
+    //this.router.navigate(['/gyms', gym.id, 'clients']);
+  }
+
+  goToGyms() {
+    this.router.navigate(['/gyms']);
   }
 }

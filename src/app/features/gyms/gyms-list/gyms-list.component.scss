@@ -56,3 +56,23 @@ th, td {
   padding: 24px;
   color: #888;
 }
+
+.breadcrumb {
+  font-size: 24px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  .breadcrumb-item {
+    cursor: pointer;
+    color: #3b82f6;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .breadcrumb-item.active {
+    color: #6b7280; 
+    cursor: default;
+  }
+}
+

@@ -23,9 +23,9 @@ export class PaymentsListComponent implements OnInit {
   }
 
   loadPayments() {
-    this.paymentsService.getPayments(this.clientId).subscribe(data => {
+    /*this.paymentsService.getPayments(this.clientId).subscribe(data => {
       this.payments = data;
-    });
+    });*/
   }
 
   newPayment() {

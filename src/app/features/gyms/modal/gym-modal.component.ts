@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -18,7 +18,7 @@ export class GymModalComponent {
   form: FormGroup;
 
   @Input() gym: any = null;
-  isSaving = false;
+  isSaving = signal(false);
 
   constructor() {
     this.form = this.fb.group({
@@ -39,7 +39,7 @@ export class GymModalComponent {
   save() {
     if (this.form.invalid) return;
 
-    this.isSaving = true;
+    this.isSaving.set(true);
 
     const data = this.form.value;
 
@@ -49,12 +49,12 @@ export class GymModalComponent {
 
     request.subscribe({
       next: (res) => {
-        this.isSaving = false;
+        this.isSaving.set(false);
         this.activeModal.close(true);
       },
       error: (err) => {
         console.error(err);
-        this.isSaving = false;
+        this.isSaving.set(false)
       },
     });
   }

@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h5 class="modal-title">{{ gym ? 'Editar Gimnasio' : 'Crear Gimnasio' }}</h5>
+  <h5 class="modal-title">{{ client ? 'Editar Cliente' : 'Crear Cliente' }}</h5>
   <button type="button" class="btn-close" (click)="close()"></button>
 </div>
 
@@ -10,8 +10,19 @@
       <input class="form-control" formControlName="name" />
     </div>
     <div class="mb-3">
-      <label class="form-label">Dirección</label>
-      <input class="form-control" formControlName="address" />
+      <label class="form-label">Correo</label>
+      <input class="form-control" formControlName="email" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Teléfono</label>
+      <input class="form-control" formControlName="phone" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Estado</label>
+      <select class="form-control" formControlName="status">
+        <option value="ACTIVE">Activo</option>
+        <option value="INACTIVE">Inactivo</option>
+      </select>
     </div>
   </form>
 </div>

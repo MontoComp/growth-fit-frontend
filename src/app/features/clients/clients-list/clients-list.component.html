@@ -1,9 +1,57 @@
-<h2>Clientes</h2>
+<div class="page">
+  <div class="header">
+    <div class="breadcrumb">
+      <span (click)="goToGyms()" class="breadcrumb-item">Gimnasios</span>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-item active">Clientes</span>
+    </div>
+    <button class="btn primary" (click)="openModal()">+ Crear cliente</button>
+  </div>
 
-<ul>
-  <li *ngFor="let client of clients" (click)="openPayments(client)">
-    {{ client.name }} - {{ client.phone }}
-  </li>
-</ul>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th>Estado</th>
+        <th class="actions">Acciones</th>
+      </tr>
+    </thead>
 
-<button (click)="createClient()">Nuevo cliente</button>
+    <tbody>
+      @if(!isLoading()) { @if(clients.length > 0){
+      <tr *ngFor="let client of clients">
+        <td (click)="goToPayments(client)" class="link">
+          {{ client.name }}
+        </td>
+        <td>
+          {{ client.email }}
+        </td>
+        <td>
+          {{ client.phone }} 
+        </td>
+        <td>
+          {{ client.status }} 
+        </td>
+
+        <td class="actions">
+          <button class="btn" (click)="openModal(client)">Editar</button>
+          <button class="btn danger" (click)="delete(client)">Eliminar</button>
+          <!--<button (click)="edit(c)">✏️</button>
+          <button (click)="deleteClient(c.id)">🗑️</button>
+          <button (click)="viewPayments(c)">💰</button>-->
+        </td>
+      </tr>
+      } @else {
+      <tr>
+        <td colspan="5" class="empty">No hay clientes registrados</td>
+      </tr>
+      } } @else {
+      <tr>
+        <td colspan="5" class="empty">No hay clientes registrados</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

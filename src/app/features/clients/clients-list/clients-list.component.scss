@@ -1,8 +1,81 @@
-li {
-  padding: 8px;
-  cursor: pointer;
+.page {
+  padding: 24px;
 }
 
-li:hover {
-  background: #eee;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.actions {
+  width: 200px;
+  text-align: right;
+}
+
+.link {
+  cursor: pointer;
+  color: #1976d2;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  padding: 6px 12px;
+  margin-left: 8px;
+  border: none;
+  cursor: pointer;
+  background: #e0e0e0;
+}
+
+.btn.primary {
+  background: #1976d2;
+  color: #fff;
+}
+
+.btn.danger {
+  background: #d32f2f;
+  color: #fff;
+}
+
+.empty {
+  text-align: center;
+  padding: 24px;
+  color: #888;
+}
+
+.breadcrumb {
+  font-size: 24px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  .breadcrumb-item {
+    cursor: pointer;
+    color: #3b82f6;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .breadcrumb-item.active {
+    color: #6b7280; 
+    cursor: default;
+  }
+  .breadcrumb-separator {
+    margin: 0 5px;
+    color: #9ca3af;
+  }
 }

@@ -34,8 +34,8 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/gyms/gyms-list/gyms-list.component').then((m) => m.GymsListComponent),
       },
-      /*{ path: 'gyms/:gymId/clients', loadComponent: () => import('./features/clients/clients-list/clients-list.component').then(m => m.ClientsListComponent) },
-      { path: 'clients/:clientId/payments', loadComponent: () => import('./features/payments/payments-list/payments-list.component').then(m => m.PaymentsListComponent) }*/
+      { path: 'gyms/:gymId/clients', loadComponent: () => import('./features/clients/clients-list/clients-list.component').then(m => m.ClientsListComponent) },
+      /*{ path: 'clients/:clientId/payments', loadComponent: () => import('./features/payments/payments-list/payments-list.component').then(m => m.PaymentsListComponent) }*/
     ],
   },
 

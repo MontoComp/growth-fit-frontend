@@ -19,12 +19,12 @@ export class PaymentCreateComponent {
   paid_until = '';
 
   create() {
-    this.paymentsService.createPayment({
+    /*this.paymentsService.createPayment({
       client_id: this.clientId,
       amount: this.amount,
       paid_until: this.paid_until
     }).subscribe(() => {
       this.router.navigate(['/clients', this.clientId, 'payments']);
-    });
+    });*/
   }
 }
