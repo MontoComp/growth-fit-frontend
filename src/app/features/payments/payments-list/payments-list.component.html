@@ -1,9 +1,59 @@
-<h2>Pagos</h2>
+<div class="page">
+  <div class="header">
+    <div class="breadcrumb">
+      <span (click)="goToGyms()" class="breadcrumb-item">Gimnasios</span>
+      <span class="breadcrumb-separator">/</span>
+      <span (click)="goToClients()" class="breadcrumb-item">Clientes</span>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-item active">Pagos</span>
+    </div>
+    <button class="btn primary" (click)="openModal()">+ Crear cliente</button>
+  </div>
 
-<ul>
-  <li *ngFor="let payment of payments">
-    S/ {{ payment.amount }} - válido hasta {{ payment.paid_until }}
-  </li>
-</ul>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Monto</th>
+        <th>Desde</th>
+        <th>Hasta</th>
+        <th>Estado</th>
+        <th class="actions">Acciones</th>
+      </tr>
+    </thead>
 
-<button (click)="newPayment()">Registrar pago</button>
+    <tbody>
+      @if(!isLoading()) { @if(payments.length > 0){
+      <tr *ngFor="let payment of payments">
+        <td (click)="null" class="link">
+          {{ payment.amount }}
+        </td>
+        <td>
+          {{ payment.paid_from | date }}
+        </td>
+        <td>
+          {{ payment.paid_until | date }} 
+        </td>
+        <td>
+          {{ payment.status }} 
+        </td>
+
+        <td class="actions">
+          <button class="btn" (click)="openModal(payment)">Editar</button>
+          <button class="btn danger" (click)="delete(payment)">Eliminar</button>
+          <!--<button (click)="edit(c)">✏️</button>
+          <button (click)="deleteClient(c.id)">🗑️</button>
+          <button (click)="viewPayments(c)">💰</button>-->
+        </td>
+      </tr>
+      } @else {
+      <tr>
+        <td colspan="5" class="empty">No hay clientes registrados</td>
+      </tr>
+      } } @else {
+      <tr>
+        <td colspan="5" class="empty">No hay clientes registrados</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

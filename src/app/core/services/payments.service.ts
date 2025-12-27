@@ -8,19 +8,19 @@ export class PaymentsService {
   private http = inject(HttpClient);
   private api = environment.apiUrl;
 
-  getPayments(clientId: number): Observable<any> {
-    return this.http.get(`${this.api}/api/clients/${clientId}/payments`);
+  getPayments(clientId: string): Observable<any> {
+    return this.http.get(`${this.api}/payments/${clientId}`);
   }
 
-  createPayment(clientId: number, payment: any): Observable<any> {
-    return this.http.post(`${this.api}/api/clients/${clientId}/payments`, payment);
+  createPayment(payment: any): Observable<any> {
+    return this.http.post(`${this.api}/payments`, payment);
   }
 
-  updatePayment(id: number, payment: any): Observable<any> {
-    return this.http.put(`${this.api}/api/clients/payments/${id}`, payment);
+  updatePayment(id: string, payment: any): Observable<any> {
+    return this.http.put(`${this.api}/payments/${id}`, payment);
   }
 
-  deletePayment(id: number): Observable<any> {
-    return this.http.delete(`${this.api}/api/clients/payments/${id}`);
+  deletePayment(id: string): Observable<any> {
+    return this.http.delete(`${this.api}/payments/${id}`);
   }
 }

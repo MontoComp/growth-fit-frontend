@@ -67,7 +67,7 @@ export class ClientsListComponent implements OnInit {
   }
 
   goToPayments(client: any) {
-    //this.router.navigate(['/gyms', gym.id, 'clients']);
+    this.router.navigate(['/gyms', this.gymId, 'clients', client.id, 'payments']);
   }
 
   goToGyms() {
