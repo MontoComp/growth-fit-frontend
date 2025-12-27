@@ -85,3 +85,29 @@
     }
   }
 }
+
+.mobile-toggle {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  font-size: 26px;
+  background: transparent;
+  border: none;
+  color: #3b82f6;
+  z-index: 1200;
+}
+
+.sidebar.mobile {
+  width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.sidebar.mobile.open {
+  width: 100vw;
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  padding: 20px 0;
+}
+

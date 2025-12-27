@@ -1,28 +1,38 @@
-<nav class="sidebar">
-  <!-- HEADER CON AVATAR -->
-  <div class="sidebar-header">
-    <div class="avatar">
-      {{ getInitials() }}
-    </div>
-    <div class="user-info">
-      <span class="email">{{ user().email }}</span>
-      <span class="role">{{ user().role }}</span>
-    </div>
-  </div>
+<!-- BOTÓN HAMBURGUESA SOLO MOBILE -->
+<button
+  class="mobile-toggle"
+  *ngIf="isMobile"
+  (click)="toggleSidebar()">
+  ☰
+</button>
 
-  <!-- NAVEGACIÓN -->
-  <ul class="menu">
-    <li (click)="navigate('/dashboard')">
-      <span class="icon">🏠</span> Dashboard
-    </li>
-    <li (click)="navigate('/gyms')">
-      <span class="icon">🏋️‍♂️</span> Gimnasios
-    </li>
-    <!-- Puedes agregar más rutas si lo deseas -->
-  </ul>
+<nav
+  class="sidebar"
+  [class.mobile]="isMobile"
+  [class.open]="sidebarOpen()">
 
-  <!-- FOOTER LOGOUT -->
-  <div class="sidebar-footer" (click)="logout()">
-    <span class="icon">🚪</span> Cerrar sesión
-  </div>
+  <ng-container *ngIf="!isMobile || sidebarOpen()">
+
+    <div class="sidebar-header">
+      <div class="avatar">{{ getInitials() }}</div>
+      <div class="user-info">
+        <span class="email">{{ user().email }}</span>
+        <span class="role">{{ user().role }}</span>
+      </div>
+    </div>
+
+    <ul class="menu">
+      <li (click)="navigate('/dashboard')">
+        <span class="icon">🏠</span> Dashboard
+      </li>
+      <li (click)="navigate('/gyms')">
+        <span class="icon">🏋️‍♂️</span> Gimnasios
+      </li>
+    </ul>
+
+    <div class="sidebar-footer" (click)="logout()">
+      <span class="icon">🚪</span> Cerrar sesión
+    </div>
+
+  </ng-container>
 </nav>

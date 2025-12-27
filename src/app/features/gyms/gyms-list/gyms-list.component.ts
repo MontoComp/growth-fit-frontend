@@ -52,8 +52,9 @@ export class GymsListComponent implements OnInit, OnDestroy {
     this.selectedGym = gym;
 
     const modalRef = this.modalService.open(GymModalComponent, {
-      size: 'lg', // modal grande
-      backdrop: 'static', // no se cierra al hacer click afuera
+      size: 'lg',
+      backdrop: 'static',
+      centered: true,
     });
     modalRef.componentInstance.gym = gym;
 

@@ -17,6 +17,10 @@
 th, td {
   padding: 12px;
   border-bottom: 1px solid #e0e0e0;
+
+  @media (max-width: 575.98px) {
+    font-size: 12px;
+  }
 }
 
 .actions {
@@ -39,6 +43,10 @@ th, td {
   border: none;
   cursor: pointer;
   background: #e0e0e0;
+
+  @media (max-width: 575.98px) {
+    font-size: 10px;
+  }
 }
 
 .btn.primary {
@@ -73,6 +81,10 @@ th, td {
   .breadcrumb-item.active {
     color: #6b7280; 
     cursor: default;
+  }
+
+  @media (max-width: 575.98px) {
+    font-size: 12px;
   }
 }
 

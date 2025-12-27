@@ -48,6 +48,7 @@ export class PaymentsListComponent implements OnInit {
     const modalRef = this.modalService.open(PaymentModalComponent, {
       size: 'lg',
       backdrop: 'static',
+      centered: true,
     });
     modalRef.componentInstance.payment = payment;
     modalRef.componentInstance.clientId = this.clientId;

@@ -57,6 +57,7 @@ export class ClientsListComponent implements OnInit {
     const modalRef = this.modalService.open(ClientModalComponent, {
       size: 'lg',
       backdrop: 'static',
+      centered: true,
     });
     modalRef.componentInstance.client = client;
     modalRef.componentInstance.gymId = this.gymId;
