@@ -25,6 +25,11 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'dashboard',
+      },
+      {
         path: 'dashboard',
         loadComponent: () =>
           import('./features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
@@ -34,8 +39,20 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/gyms/gyms-list/gyms-list.component').then((m) => m.GymsListComponent),
       },
-      { path: 'gyms/:gymId/clients', loadComponent: () => import('./features/clients/clients-list/clients-list.component').then(m => m.ClientsListComponent) },
-      { path: 'gyms/:gymId/clients/:clientId/payments', loadComponent: () => import('./features/payments/payments-list/payments-list.component').then(m => m.PaymentsListComponent) }
+      {
+        path: 'gyms/:gymId/clients',
+        loadComponent: () =>
+          import('./features/clients/clients-list/clients-list.component').then(
+            (m) => m.ClientsListComponent
+          ),
+      },
+      {
+        path: 'gyms/:gymId/clients/:clientId/payments',
+        loadComponent: () =>
+          import('./features/payments/payments-list/payments-list.component').then(
+            (m) => m.PaymentsListComponent
+          ),
+      },
     ],
   },
 
