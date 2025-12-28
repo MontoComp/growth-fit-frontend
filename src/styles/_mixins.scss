@@ -1,0 +1,94 @@
+@import './breakpoints';
+
+@mixin extra-small {
+  @media only screen and (max-width: 320px) {
+    @content;
+  }
+}
+
+@mixin small {
+  @media only screen and (max-width: 575.98px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media only screen and (max-width: 740px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin tablet-large {
+  @media only screen and (max-width: 1199.98px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: 1366px) {
+    @content;
+  }
+}
+
+@mixin large {
+  @media only screen and (min-width: 1599px) {
+    @content;
+  }
+}
+
+@mixin growth-fit-small {
+  @media #{$breakpoint-small} {
+    @content;
+  }
+}
+
+@mixin growth-fit-medium {
+  @media #{$breakpoint-medium} {
+    @content;
+  }
+}
+
+@mixin growth-fit-large {
+  @media #{$breakpoint-large} {
+    @content;
+  }
+}
+
+@mixin growth-fit-small-and-medium {
+  @media #{$breakpoint-small} {
+    @content;
+  }
+
+  @media #{$breakpoint-medium} {
+    @content;
+  }
+}
+
+@mixin custom-scrollbar(
+  $width: 7px,
+  $height: 7px,
+  $border-radius: 7px,
+  $background-thumb: #cccccc,
+  $background-track: transparent
+) {
+  ::-webkit-scrollbar {
+    width: $width;
+    height: $height;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $background-thumb;
+    border-radius: $border-radius;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: $background-track;
+    border-radius: $border-radius;
+  }
+}

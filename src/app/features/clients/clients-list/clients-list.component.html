@@ -8,50 +8,67 @@
     <button class="btn primary" (click)="openModal()">+ Crear cliente</button>
   </div>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Email</th>
-        <th>Teléfono</th>
-        <th>Estado</th>
-        <th class="actions">Acciones</th>
-      </tr>
-    </thead>
+  <div #tableContainer class="clients-table-container">
+    <div class="fixed-table">
+      <table>
+        <tr class="sticky header-cell">
+          <td class="bolder" [style.width.px]="120">Nombre</td>
+        </tr>
 
-    <tbody>
-      @if(!isLoading()) { @if(clients.length > 0){
-      <tr *ngFor="let client of clients">
-        <td (click)="goToPayments(client)" class="link">
-          {{ client.name }}
-        </td>
-        <td>
-          {{ client.email }}
-        </td>
-        <td>
-          {{ client.phone }} 
-        </td>
-        <td>
-          {{ client.status }} 
-        </td>
+        @if(!isLoading()) { @if(clients.length > 0){
+        <tr *ngFor="let item of clients">
+          <td (click)="goToPayments(item)" class="link">
+            {{ item.name }}
+          </td>
+        </tr>
+        } @else {
+        <tr>
+          <td colspan="1" class="empty"></td>
+        </tr>
+        } } @else {
+        <tr>
+          <td colspan="1" class="empty"></td>
+        </tr>
+        }
+      </table>
+    </div>
+    <div class="normal-table">
+      <table>
+        <tr class="sticky header-cell">
+          <td class="bolder" [style.width.px]="120">Email</td>
+          <td class="bolder" [style.width.px]="120">Teléfono</td>
+          <td class="bolder" [style.width.px]="120">Estado</td>
+          <td class="bolder" [style.width.px]="180">Acciones</td>
+        </tr>
 
-        <td class="actions">
-          <button class="btn" (click)="openModal(client)">Editar</button>
-          <button class="btn danger" (click)="delete(client)">Eliminar</button>
-          <!--<button (click)="edit(c)">✏️</button>
-          <button (click)="deleteClient(c.id)">🗑️</button>
-          <button (click)="viewPayments(c)">💰</button>-->
-        </td>
-      </tr>
-      } @else {
-      <tr>
-        <td colspan="5" class="empty">No hay clientes registrados</td>
-      </tr>
-      } } @else {
-      <tr>
-        <td colspan="5" class="empty">No hay clientes registrados</td>
-      </tr>
-      }
-    </tbody>
-  </table>
+        @if(!isLoading()) { @if(clients.length > 0){
+        <tr *ngFor="let item of clients">
+          <td>
+            {{ item.email }}
+          </td>
+          <td>
+            {{ item.phone }}
+          </td>
+          <td>
+            {{ item.status }}
+          </td>
+
+          <td>
+            <button class="btn" (click)="openModal(item)">✏️</button>
+            <button class="btn danger" (click)="delete(item)">🗑️</button>
+            <!--<button (click)="viewPayments(c)">💰</button>-->
+          </td>
+        </tr>
+        } @else {
+        <tr>
+          <td colspan="4" class="empty"></td>
+        </tr>
+        } } @else {
+        <tr>
+          <td colspan="4" class="empty"></td>
+        </tr>
+        }
+      </table>
+    </div>
+  </div>
 </div>
