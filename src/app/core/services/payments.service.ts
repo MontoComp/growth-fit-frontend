@@ -16,6 +16,10 @@ export class PaymentsService {
     return this.http.post(`${this.api}/payments`, payment);
   }
 
+  renewPayment(payment: any): Observable<any> {
+    return this.http.post(`${this.api}/payments/renew`, payment);
+  }
+
   updatePayment(id: string, payment: any): Observable<any> {
     return this.http.put(`${this.api}/payments/${id}`, payment);
   }

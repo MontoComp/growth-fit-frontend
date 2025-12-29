@@ -4,8 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PaymentsService } from '../../../core/services/payments.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { firstValueFrom } from 'rxjs';
-import { PaymentModalComponent } from '../modal/payment-modal.component';
+import { PaymentModalComponent } from '../modal/payment-modal/payment-modal.component';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { PaymentRenewModalComponent } from '../modal/payment-renew-modal/payment-renew-modal.component';
 
 @Component({
   standalone: true,
@@ -60,6 +61,23 @@ export class PaymentsListComponent implements OnInit {
     });
   }
 
+  openRenewModal(lastPayment: any = null) {
+    this.selectedPayment = lastPayment;
+
+    const modalRef = this.modalService.open(PaymentRenewModalComponent, {
+      size: 'lg',
+      backdrop: 'static',
+      centered: true,
+    });
+    modalRef.componentInstance.lastPayment = lastPayment;
+    modalRef.componentInstance.clientId = this.clientId;
+    modalRef.componentInstance.gymId = this.gymId;
+
+    modalRef.closed.subscribe((refresh: boolean) => {
+      if (refresh) this.loadPayments();
+    });
+  }
+
   delete(payment: any) {
     if (!confirm('¿Eliminar pago?')) return;
 
@@ -77,6 +95,8 @@ export class PaymentsListComponent implements OnInit {
   }
 
   getRowsForSkeleton(rowTotal: number = 15) {
-    return Array(rowTotal).fill(0).map((x,i)=>i);
+    return Array(rowTotal)
+      .fill(0)
+      .map((x, i) => i);
   }
 }

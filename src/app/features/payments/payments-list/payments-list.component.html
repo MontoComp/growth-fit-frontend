@@ -48,7 +48,9 @@
           </td>
 
           <td>
-            <button class="btn" (click)="openModal(item)" [disabled]="true">✏️</button>
+            @if(item.is_active){
+              <button class="btn" (click)="openRenewModal(item)">✏️</button>
+            }
             <button class="btn danger" (click)="delete(item)">🗑️</button>
           </td>
         </tr>

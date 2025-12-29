@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { PaymentsService } from '../../../core/services/payments.service';
+import { PaymentsService } from '../../../../core/services/payments.service';
 import { NgbActiveModal, NgbDateAdapter, NgbDateParserFormatter, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import  moment from 'moment';
-import { NgbDateMomentAdapter } from '../../../core/utils/date-adapter.service';
-import { NgbDateCustomParserFormatter } from '../../../core/utils/date-format.service';
+import { NgbDateMomentAdapter } from '../../../../core/utils/date-adapter.service';
+import { NgbDateCustomParserFormatter } from '../../../../core/utils/date-format.service';
 import { firstValueFrom } from 'rxjs';
-import { PlansService } from '../../../core/services/plans.service';
+import { PlansService } from '../../../../core/services/plans.service';
 
 @Component({
   standalone: true,
@@ -87,7 +87,6 @@ export class PaymentModalComponent {
   }
 
   save() {
-    console.log('Saving payment...', this.form.value, this.paidUntil);
     if (this.form.invalid || !this.paidUntil) return;
 
     this.isSaving.set(true);

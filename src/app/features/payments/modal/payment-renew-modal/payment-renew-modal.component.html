@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <h4>{{ isExpandedState ? 'Ampliar' : 'Renovar' }}</h4>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="form">
+    <div class="mb-3">
+      <label class="form-label">Cantidad de meses</label>
+      @if(!isLoading()){
+      <input type="number" class="form-control" min="1" formControlName="months" />
+      }
+    </div>
+
+    @if(totalAmount > 0) {
+    <div class="alert alert-info">
+      <p class="mb-1"><strong>Monto total:</strong> S/ {{ totalAmount }}</p>
+      <p class="mb-1"><strong>Inicio:</strong> {{ paidFrom | date : 'dd/MM/yyyy' }}</p>
+      <p class="mb-0"><strong>Válido hasta:</strong> {{ paidUntil | date : 'dd/MM/yyyy' }}</p>
+    </div>
+    }
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-secondary" (click)="close()">Cancelar</button>
+  <button class="btn btn-primary" (click)="save()" [disabled]="isSaving() || form.invalid">
+    {{ isSaving() ? 'Guardando...' : isExpandedState ? 'Ampliar' : 'Renovar' }}
+  </button>
+</div>
