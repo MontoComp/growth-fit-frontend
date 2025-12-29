@@ -8,6 +8,7 @@
     <button class="btn primary" (click)="openModal()">+ Crear cliente</button>
   </div>
 
+  @if(!isLoading()){ @if(clients && clients.length > 0){
   <div #tableContainer class="clients-table-container">
     <div class="fixed-table">
       <table>
@@ -15,21 +16,11 @@
           <td class="bolder" [style.width.px]="120">Nombre</td>
         </tr>
 
-        @if(!isLoading()) { @if(clients.length > 0){
         <tr *ngFor="let item of clients">
           <td (click)="goToPayments(item)" class="link">
             {{ item.name }}
           </td>
         </tr>
-        } @else {
-        <tr>
-          <td colspan="1" class="empty"></td>
-        </tr>
-        } } @else {
-        <tr>
-          <td colspan="1" class="empty"></td>
-        </tr>
-        }
       </table>
     </div>
     <div class="normal-table">
@@ -41,7 +32,6 @@
           <td class="bolder" [style.width.px]="180">Acciones</td>
         </tr>
 
-        @if(!isLoading()) { @if(clients.length > 0){
         <tr *ngFor="let item of clients">
           <td>
             {{ item.email }}
@@ -59,16 +49,61 @@
             <!--<button (click)="viewPayments(c)">💰</button>-->
           </td>
         </tr>
-        } @else {
-        <tr>
-          <td colspan="4" class="empty"></td>
-        </tr>
-        } } @else {
-        <tr>
-          <td colspan="4" class="empty"></td>
-        </tr>
-        }
       </table>
     </div>
   </div>
+  } @else {
+  <ng-container [ngTemplateOutlet]="emptyTable"></ng-container>
+  } } @else {
+  <div class="clients-table-container">
+    <div class="fixed-table">
+      <table>
+        <tr class="sticky header-cell">
+          <td class="bolder" [style.width.px]="120">Nombre</td>
+        </tr>
+        <ng-container
+          [ngTemplateOutlet]="loadingTable"
+          [ngTemplateOutletContext]="{ totalColumns: 1 }"
+        >
+        </ng-container>
+      </table>
+    </div>
+    <div class="normal-table">
+      <table>
+        <tr class="sticky header-cell">
+          <td class="bolder" [style.width.px]="120">Email</td>
+          <td class="bolder" [style.width.px]="120">Teléfono</td>
+          <td class="bolder" [style.width.px]="120">Estado</td>
+          <td class="bolder" [style.width.px]="180">Acciones</td>
+        </tr>
+        <ng-container
+          [ngTemplateOutlet]="loadingTable"
+          [ngTemplateOutletContext]="{ totalColumns: 4 }"
+        >
+        </ng-container>
+      </table>
+    </div>
+  </div>
+  }
 </div>
+
+<ng-template #loadingTable let-totalColumns="totalColumns">
+  <tr *ngFor="let tr of getRowsForSkeleton(4)">
+    <td *ngFor="let td of getRowsForSkeleton(totalColumns)">
+      <nz-skeleton-element
+        nzType="input"
+        nzSize="small"
+        class="skeleton"
+        style="width: 100%"
+        [nzActive]="true"
+      >
+      </nz-skeleton-element>
+    </td>
+  </tr>
+</ng-template>
+
+<ng-template #emptyTable>
+  <div class="empty-table">
+    <span>Aún no se han registrado datos en esta sección</span>
+  </div>
+</ng-template>

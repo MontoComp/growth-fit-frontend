@@ -5,10 +5,11 @@ import { PaymentsService } from '../../../core/services/payments.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { firstValueFrom } from 'rxjs';
 import { PaymentModalComponent } from '../modal/payment-modal.component';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NzSkeletonModule],
   templateUrl: './payments-list.component.html',
   styleUrl: './payments-list.component.scss',
 })
@@ -52,6 +53,7 @@ export class PaymentsListComponent implements OnInit {
     });
     modalRef.componentInstance.payment = payment;
     modalRef.componentInstance.clientId = this.clientId;
+    modalRef.componentInstance.gymId = this.gymId;
 
     modalRef.closed.subscribe((refresh: boolean) => {
       if (refresh) this.loadPayments();
@@ -72,5 +74,9 @@ export class PaymentsListComponent implements OnInit {
 
   goToClients() {
     this.router.navigate(['/gyms', this.gymId, 'clients']);
+  }
+
+  getRowsForSkeleton(rowTotal: number = 15) {
+    return Array(rowTotal).fill(0).map((x,i)=>i);
   }
 }

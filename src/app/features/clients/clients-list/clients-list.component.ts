@@ -5,11 +5,12 @@ import { firstValueFrom } from 'rxjs';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClientModalComponent } from '../modal/client-modal.component';
 import { CommonModule } from '@angular/common';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 @Component({
   selector: 'app-clients-list',
   standalone: true,
-  imports: [CommonModule, NgbModule],
+  imports: [CommonModule, NgbModule, NzSkeletonModule],
   templateUrl: './clients-list.component.html',
   styleUrl: './clients-list.component.scss',
 })
@@ -74,4 +75,9 @@ export class ClientsListComponent implements OnInit {
   goToGyms() {
     this.router.navigate(['/gyms']);
   }
+
+  getRowsForSkeleton(rowTotal: number = 15) {
+    return Array(rowTotal).fill(0).map((x,i)=>i);
+  }
+
 }

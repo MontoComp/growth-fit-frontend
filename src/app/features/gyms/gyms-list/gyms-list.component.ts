@@ -5,11 +5,12 @@ import { GymsService } from '../../../core/services/gyms.service';
 import { GymModalComponent } from '../modal/gym-modal.component';
 import { firstValueFrom } from 'rxjs';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 @Component({
   selector: 'app-gyms-list',
   standalone: true,
-  imports: [CommonModule, NgbModule],
+  imports: [CommonModule, NgbModule, NzSkeletonModule],
   templateUrl: './gyms-list.component.html',
   styleUrl: './gyms-list.component.scss',
 })
@@ -66,6 +67,10 @@ export class GymsListComponent implements OnInit, OnDestroy {
 
   goToClients(gym: any) {
     this.router.navigate(['/gyms', gym.id, 'clients']);
+  }
+
+  getRowsForSkeleton(rowTotal: number = 15) {
+    return Array(rowTotal).fill(0).map((x,i)=>i);
   }
 
   ngOnDestroy() {

@@ -1,17 +1,41 @@
-
 <div class="modal-body">
   <form [formGroup]="form">
     <div class="mb-3">
-      <label class="form-label">Monto</label>
-      <input type="number" class="form-control" formControlName="amount" />
+      <label class="form-label">Plan</label>
+      @if(!isLoading()){
+      <select class="form-select" formControlName="plan_id">
+        <option [ngValue]="null">Seleccionar plan</option>
+        <option *ngFor="let p of plans" [ngValue]="p.id">{{ p.name }} - S/ {{ p.price }}</option>
+      </select>
+      }
     </div>
+
+    <div class="mb-3">
+      <label class="form-label">Cantidad de meses</label>
+      @if(!isLoading()){
+      <input type="number" class="form-control" min="1" formControlName="months" />
+      }
+    </div>
+
     <div class="mb-3">
       <label class="form-label">Fecha Inicio</label>
-      <input type="date" class="form-control" formControlName="paid_from" />
+      @if(!isLoading()){
+      <div class="input-group">
+        <input
+          class="form-control"
+          ngbDatepicker
+          #d="ngbDatepicker"
+          formControlName="paid_from"
+          placeholder="dd/MM/yyyy"
+        />
+        <button class="btn btn-outline-secondary" type="button" (click)="d.toggle()">📅</button>
+      </div>
+      }
     </div>
-    <div class="mb-3">
-      <label class="form-label">Fecha Fin</label>
-      <input type="date" class="form-control" formControlName="paid_until" />
+
+    <div class="alert alert-info" *ngIf="totalAmount > 0">
+      <p class="mb-1"><strong>Monto total:</strong> S/ {{ totalAmount }}</p>
+      <p class="mb-0"><strong>Válido hasta:</strong> {{ paidUntil | date : 'dd/MM/yyyy' }}</p>
     </div>
   </form>
 </div>

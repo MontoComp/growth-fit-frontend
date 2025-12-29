@@ -7,9 +7,12 @@
       <span class="breadcrumb-separator">/</span>
       <span class="breadcrumb-item active">Pagos</span>
     </div>
+    @if(!isLoading() && payments.length === 0){
     <button class="btn primary" (click)="openModal()">+ Agregar pago</button>
+    }
   </div>
 
+  @if(!isLoading()){ @if(payments && payments.length > 0){
   <div #tableContainer class="payments-table-container">
     <div class="fixed-table">
       <table>
@@ -17,21 +20,11 @@
           <td class="bolder" [style.width.px]="120">Monto</td>
         </tr>
 
-        @if(!isLoading()) { @if(payments.length > 0){
         <tr *ngFor="let item of payments">
-          <td (click)="(null)" class="link">
+          <td>
             {{ item.amount }}
           </td>
         </tr>
-        } @else {
-        <tr>
-          <td colspan="1" class="empty"></td>
-        </tr>
-        } } @else {
-        <tr>
-          <td colspan="1" class="empty"></td>
-        </tr>
-        }
       </table>
     </div>
     <div class="normal-table">
@@ -39,11 +32,10 @@
         <tr class="sticky header-cell">
           <td class="bolder" [style.width.px]="120">Desde</td>
           <td class="bolder" [style.width.px]="120">Hasta</td>
-          <td class="bolder" [style.width.px]="120">Estado</td>
+          <td class="bolder" [style.width.px]="120">Plan</td>
           <td class="bolder" [style.width.px]="180">Acciones</td>
         </tr>
 
-        @if(!isLoading()) { @if(payments.length > 0){
         <tr *ngFor="let item of payments">
           <td>
             {{ item.paid_from | date }}
@@ -52,24 +44,69 @@
             {{ item.paid_until | date }}
           </td>
           <td>
-            {{ item.status }}
+            {{ item.plans.name }}
           </td>
 
           <td>
-            <button class="btn" (click)="openModal(item)">✏️</button>
+            <button class="btn" (click)="openModal(item)" [disabled]="true">✏️</button>
             <button class="btn danger" (click)="delete(item)">🗑️</button>
           </td>
         </tr>
-        } @else {
-        <tr>
-          <td colspan="4" class="empty"></td>
-        </tr>
-        } } @else {
-        <tr>
-          <td colspan="4" class="empty"></td>
-        </tr>
-        }
       </table>
     </div>
   </div>
+  } @else {
+  <ng-container [ngTemplateOutlet]="emptyTable"></ng-container>
+  } } @else {
+  <div class="payments-table-container">
+    <div class="fixed-table">
+      <table>
+        <tr class="sticky header-cell">
+          <td class="bolder" [style.width.px]="120">Monto</td>
+        </tr>
+        <ng-container
+          [ngTemplateOutlet]="loadingTable"
+          [ngTemplateOutletContext]="{ totalColumns: 1 }"
+        >
+        </ng-container>
+      </table>
+    </div>
+    <div class="normal-table">
+      <table>
+        <tr class="sticky header-cell">
+          <td class="bolder" [style.width.px]="120">Desde</td>
+          <td class="bolder" [style.width.px]="120">Hasta</td>
+          <td class="bolder" [style.width.px]="120">Plan</td>
+          <td class="bolder" [style.width.px]="180">Acciones</td>
+        </tr>
+        <ng-container
+          [ngTemplateOutlet]="loadingTable"
+          [ngTemplateOutletContext]="{ totalColumns: 4 }"
+        >
+        </ng-container>
+      </table>
+    </div>
+  </div>
+  }
 </div>
+
+<ng-template #loadingTable let-totalColumns="totalColumns">
+  <tr *ngFor="let tr of getRowsForSkeleton(4)">
+    <td *ngFor="let td of getRowsForSkeleton(totalColumns)">
+      <nz-skeleton-element
+        nzType="input"
+        nzSize="small"
+        class="skeleton"
+        style="width: 100%"
+        [nzActive]="true"
+      >
+      </nz-skeleton-element>
+    </td>
+  </tr>
+</ng-template>
+
+<ng-template #emptyTable>
+  <div class="empty-table">
+    <span>Aún no se han registrado datos en esta sección</span>
+  </div>
+</ng-template>
