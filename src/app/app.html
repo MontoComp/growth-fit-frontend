@@ -1,1 +1,13 @@
 <router-outlet />
+<ng-container *ngIf="toastModel() && toastModel().viewToast">
+  <ng-container [ngSwitch]="toastModel().type">
+    <genia-alert-v2
+      [icon]="toastModel().icon"
+      [message]="toastModel().message"
+      [viewIcon]="toastModel().viewIcon"
+      [position]="toastModel().position"
+      [hideDelay]="toastModel().hideDelay"
+      [viewCloseButton]="toastModel().viewCloseButton"
+    ></genia-alert-v2>
+  </ng-container>
+</ng-container>

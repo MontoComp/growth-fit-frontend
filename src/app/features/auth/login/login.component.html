@@ -38,9 +38,9 @@
       <button
         type="submit"
         class="btn-primary"
-        [disabled]="form.invalid || isLoading"
+        [disabled]="form.invalid || isLoading()"
       >
-        {{ isLoading ? 'Ingresando...' : 'Ingresar' }}
+        {{ isLoading() ? 'Ingresando...' : 'Ingresar' }}
       </button>
     </form>
 
