@@ -17,7 +17,7 @@
     <div class="fixed-table">
       <table>
         <tr class="sticky header-cell">
-          <td class="bolder" [style.width.px]="120">Monto</td>
+          <td class="bolder" [style.width.px]="100">Monto</td>
         </tr>
 
         <tr *ngFor="let item of payments">
@@ -30,8 +30,8 @@
     <div class="normal-table">
       <table>
         <tr class="sticky header-cell">
-          <td class="bolder" [style.width.px]="120">Desde</td>
-          <td class="bolder" [style.width.px]="120">Hasta</td>
+          <td class="bolder" [style.width.px]="100">Desde</td>
+          <td class="bolder" [style.width.px]="100">Hasta</td>
           <td class="bolder" [style.width.px]="120">Plan</td>
           <td class="bolder" [style.width.px]="180">Acciones</td>
         </tr>
@@ -49,9 +49,9 @@
 
           <td>
             @if(item.is_active){
-              <button class="btn" (click)="openRenewModal(item)">✏️</button>
+              <button class="btn" (click)="openRenewModal(item)">⏳</button>
             }
-            <button class="btn danger" (click)="delete(item)">🗑️</button>
+            <button class="btn danger" (click)="delete(item)" [disabled]="true">🗑️</button>
           </td>
         </tr>
       </table>

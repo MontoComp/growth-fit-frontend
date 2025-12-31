@@ -1,42 +1,40 @@
 import { Component, Input, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ClientsService } from '../../../core/services/clients.service';
 import { CommonModule } from '@angular/common';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { PlansService } from '../../../core/services/plans.service';
 
 
 @Component({
-  selector: 'app-client-modal',
+  selector: 'app-plan-modal',
   standalone: true,
   imports: [CommonModule, FormsModule,ReactiveFormsModule],
-  templateUrl: './client-modal.component.html'
+  templateUrl: './plan-modal.component.html'
 })
-export class ClientModalComponent implements OnInit {
+export class PlanModalComponent implements OnInit {
 
-  private clientsService = inject(ClientsService);
+  private plansService = inject(PlansService);
   public activeModal = inject(NgbActiveModal);
   private fb = inject(FormBuilder);
 
   form: FormGroup;
 
   @Input() gymId!: string;
-  @Input() client: any = null;
+  @Input() plan: any = null;
   isSaving = signal(false);
 
   constructor() {
     this.form = this.fb.group({
     name: ['', Validators.required],
-    email: [''],
-    phone: [''],
+    price: ['', Validators.required],
   });
   }
 
   ngOnInit() {
-    if (this.client) {
+    if (this.plan) {
       this.form.patchValue({
-        name: this.client.name,
-        email: this.client.email,
-        phone: this.client.phone,
+        name: this.plan.name,
+        price: this.plan.price,
       });
     }
   }
@@ -51,11 +49,12 @@ export class ClientModalComponent implements OnInit {
     const payload = {
         ...data,
         gymid: this.gymId,
+        duration_months: 1,
     }
 
-    const request = this.client
-      ? this.clientsService.updateClient(this.client.id, payload)
-      : this.clientsService.createClient(payload);
+    const request = this.plan
+      ? this.plansService.updatePlan(this.plan.id, payload)
+      : this.plansService.createPlan(payload);
 
     request.subscribe({
       next: (res) => {

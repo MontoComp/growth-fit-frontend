@@ -53,6 +53,13 @@ export const routes: Routes = [
             (m) => m.PaymentsListComponent
           ),
       },
+      {
+        path: 'gyms/:gymId/plans',
+        loadComponent: () =>
+          import('./features/plans/plans-list/plans-list.component').then(
+            (m) => m.PlansListComponent
+          ),
+      },
     ],
   },
 

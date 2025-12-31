@@ -1,23 +1,23 @@
 <div class="page">
   <div class="header">
     <div class="breadcrumb">
-      <span class="breadcrumb-item active">Gimnasios</span>
+      <span (click)="goToGyms()" class="breadcrumb-item">Gimnasios</span>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-item active">Planes</span>
     </div>
-    <div>
-      <button class="btn primary" (click)="openModal()">+ Crear gimnasio</button>
-    </div>
+    <button class="btn primary" (click)="openModal()">+ Crear plan</button>
   </div>
 
-  @if(!isLoading()){ @if(gyms && gyms.length > 0){
-  <div #tableContainer class="gyms-table-container">
+  @if(!isLoading()){ @if(plans && plans.length > 0){
+  <div #tableContainer class="plans-table-container">
     <div class="fixed-table">
       <table>
         <tr class="sticky header-cell">
           <td class="bolder" [style.width.px]="120">Nombre</td>
         </tr>
 
-        <tr *ngFor="let item of gyms">
-          <td (click)="goToClients(item)" class="link">
+        <tr *ngFor="let item of plans">
+          <td (click)="goToPayments(item)" class="link">
             {{ item.name }}
           </td>
         </tr>
@@ -26,17 +26,16 @@
     <div class="normal-table">
       <table>
         <tr class="sticky header-cell">
-          <td class="bolder" [style.width.px]="180">Dirección</td>
+          <td class="bolder" [style.width.px]="120">Precio</td>
           <td class="bolder" [style.width.px]="180">Acciones</td>
         </tr>
 
-        <tr *ngFor="let item of gyms">
+        <tr *ngFor="let item of plans">
           <td>
-            {{ item.address }}
+            {{ item.price }}
           </td>
 
           <td>
-            <button class="btn" (click)="goToPlans(item)">💳</button>
             <button class="btn" (click)="openModal(item)">✏️</button>
             <button class="btn danger" (click)="delete(item)">🗑️</button>
           </td>
@@ -47,7 +46,7 @@
   } @else {
   <ng-container [ngTemplateOutlet]="emptyTable"></ng-container>
   } } @else {
-  <div class="gyms-table-container">
+  <div class="plans-table-container">
     <div class="fixed-table">
       <table>
         <tr class="sticky header-cell">
@@ -63,12 +62,14 @@
     <div class="normal-table">
       <table>
         <tr class="sticky header-cell">
-          <td class="bolder" [style.width.px]="120">Dirección</td>
+          <td class="bolder" [style.width.px]="120">Email</td>
+          <td class="bolder" [style.width.px]="120">Teléfono</td>
+          <td class="bolder" [style.width.px]="120">Estado</td>
           <td class="bolder" [style.width.px]="180">Acciones</td>
         </tr>
         <ng-container
           [ngTemplateOutlet]="loadingTable"
-          [ngTemplateOutletContext]="{ totalColumns: 2 }"
+          [ngTemplateOutletContext]="{ totalColumns: 4 }"
         >
         </ng-container>
       </table>

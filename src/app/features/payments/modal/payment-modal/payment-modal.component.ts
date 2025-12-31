@@ -38,7 +38,7 @@ export class PaymentModalComponent {
   paidUntil: any = null;
 
   form = this.fb.group({
-    plan_id: ['', Validators.required],
+    plan_id: [null, Validators.required],
     months: [1, [Validators.required, Validators.min(1)]],
     paid_from: ['', Validators.required],
   });

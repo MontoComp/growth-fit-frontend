@@ -69,8 +69,14 @@ export class GymsListComponent implements OnInit, OnDestroy {
     this.router.navigate(['/gyms', gym.id, 'clients']);
   }
 
+  goToPlans(gym: any) {
+    this.router.navigate(['/gyms', gym.id, 'plans']);
+  }
+
   getRowsForSkeleton(rowTotal: number = 15) {
-    return Array(rowTotal).fill(0).map((x,i)=>i);
+    return Array(rowTotal)
+      .fill(0)
+      .map((x, i) => i);
   }
 
   ngOnDestroy() {
