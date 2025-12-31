@@ -185,7 +185,7 @@ table {
     }
   }
   .breadcrumb-item.active {
-    color: #6b7280; 
+    color: #6b7280;
     cursor: default;
   }
   .breadcrumb-separator {
@@ -195,6 +195,25 @@ table {
 
   @include growth-fit-small {
     font-size: 12px;
+  }
+}
+
+.badge {
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  //text-transform: uppercase;
+  display: inline-block;
+  color: #15192e;
+
+  .badge-active {
+    background-color: #e6f4ea;
+    color: #1e7e34;
+  }
+
+  .badge-inactive {
+    background-color: #fdecea;
+    color: #b02a37;
   }
 }
 

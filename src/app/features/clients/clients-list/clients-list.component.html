@@ -40,7 +40,13 @@
             {{ item.phone }}
           </td>
           <td>
-            {{ item.status }}
+            <span
+              class="badge"
+              [ngClass]="item.status === 'ACTIVE' ? 'badge-active' : 'badge-inactive'"
+            >
+              <ng-container *ngIf="item.status === 'ACTIVE'">🟢 Activo</ng-container>
+              <ng-container *ngIf="item.status === 'INACTIVE'">🔴 Inactivo</ng-container>
+            </span>
           </td>
 
           <td>
