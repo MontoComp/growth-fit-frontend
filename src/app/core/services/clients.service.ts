@@ -23,4 +23,8 @@ export class ClientsService {
   deleteClient(id: number): Observable<any> {
     return this.http.delete(`${this.api}/clients/${id}`);
   }
+
+  getClientsByGymWithStatus(gymId: string): Observable<any> {
+    return this.http.get<any[]>(`${this.api}/clients/${gymId}/status`);
+  }
 }

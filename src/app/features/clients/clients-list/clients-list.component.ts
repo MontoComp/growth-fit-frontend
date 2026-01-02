@@ -6,6 +6,7 @@ import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClientModalComponent } from '../modal/client-modal.component';
 import { CommonModule } from '@angular/common';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import moment from 'moment';
 
 @Component({
   selector: 'app-clients-list',
@@ -35,7 +36,9 @@ export class ClientsListComponent implements OnInit {
   async loadClients() {
     this.isLoading.set(true);
     try {
-      const result = await firstValueFrom(this.clientsService.getClientsByGym(this.gymId));
+      const result = await firstValueFrom(
+        this.clientsService.getClientsByGymWithStatus(this.gymId)
+      );
       this.clients = result;
     } catch (err) {
       console.error(err);
@@ -77,7 +80,44 @@ export class ClientsListComponent implements OnInit {
   }
 
   getRowsForSkeleton(rowTotal: number = 15) {
-    return Array(rowTotal).fill(0).map((x,i)=>i);
+    return Array(rowTotal)
+      .fill(0)
+      .map((x, i) => i);
   }
 
+  statusClass(status: string) {
+    return {
+      ACTIVE: 'badge-active',
+      WARNING: 'badge-warning',
+      EXPIRED: 'badge-expired',
+    }[status];
+  }
+
+  statusLabel(item: any) {
+    if (item.status === 'ACTIVE') {
+      return `🟢 Activo (vence ${this.formatDate(item.paid_until)})`;
+    }
+
+    if (item.status === 'WARNING') {
+      const days = this.daysLeft(item.paid_until);
+      return `🟡 Por vencer (${days} ${days>1 ? 'días' : 'día'})`;
+    }
+
+    return '🔴 Inactivo';
+  }
+
+  daysLeft(date: string): number {
+    if (!date) return 0;
+
+    const today = moment().startOf('day');
+    const target = moment(date, 'YYYY-MM-DD');
+
+    return target.diff(today, 'days');
+  }
+
+  formatDate(date: string | null): string {
+    if (!date) return '';
+
+    return moment(date, 'YYYY-MM-DD').format('DD/MM/YYYY');
+  }
 }
