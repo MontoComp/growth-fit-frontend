@@ -51,7 +51,7 @@
             @if(item.is_active){
               <button class="btn" (click)="openRenewModal(item)">⏳</button>
             }
-            <button class="btn danger" (click)="delete(item)" [disabled]="false">🗑️</button>
+            <button class="btn danger" (click)="delete(item)" [disabled]="true">🗑️</button>
           </td>
         </tr>
       </table>
