@@ -4,7 +4,7 @@
       <span class="breadcrumb-item active">Gimnasios</span>
     </div>
     <div>
-      <button class="btn primary" (click)="openModal()">+ Crear gimnasio</button>
+      <button class="btn primary" [disabled]="gyms.length > 1" (click)="openModal()">+ Crear gimnasio</button>
     </div>
   </div>
 
