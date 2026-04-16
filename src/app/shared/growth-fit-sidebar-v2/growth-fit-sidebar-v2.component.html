@@ -1,0 +1,24 @@
+<div class="growth-fit-sidebar-v2-container" [ngClass]="{'open': sideBarOpen, 'closed': !sideBarOpen, 'isDrawer': isDrawer}">
+    <div *ngIf="sideBarOpen" class="title-container">
+        <div>Growth Fit</div>
+        <div *ngIf="sideBarOpen" class="collapsable-button">
+            <div *ngIf="deviceSize == size.LARGE && !isDrawer" class="icon-arrow" (click)="toggleSideBar()">
+                <growth-fit-icon icon="arrow-down" fill="white" [width]="16" [height]="16"></growth-fit-icon>
+            </div>
+            <div *ngIf="isDrawer" class="icon-arrow-close" (click)="closeDrawer.emit()">
+                <growth-fit-icon icon="close" fill="white" [width]="24" [height]="24"></growth-fit-icon>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!sideBarOpen" class="image-principal">
+        {{"GF"}}
+    </div>
+    <div class="modules-container">
+        <ng-container *ngFor="let module of growthFitModules">
+            <div class="module-item" [routerLink]="'./'+module.moduleRoute" routerLinkActive="active">
+                <growth-fit-icon [icon]="module.icon" [width]="24" [height]="24"></growth-fit-icon>
+                <span class="module-text" *ngIf="sideBarOpen">{{module.text}}</span>
+            </div>
+        </ng-container>
+    </div>
+</div>

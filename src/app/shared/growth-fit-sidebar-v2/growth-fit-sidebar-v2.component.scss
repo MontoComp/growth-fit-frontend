@@ -1,0 +1,142 @@
+.growth-fit-sidebar-v2-container {
+  position: relative;
+
+  .title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 700;
+    padding: 0.5rem 0px 0rem 1rem;
+    margin-bottom: 40px;
+    color: #001a72;
+    user-select: none;
+  }
+
+  .image-principal {
+    margin-bottom: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #aeb7d2;
+    color: #001a72;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 100%;
+  }
+
+  .leyend {
+    color: #001a72;
+    font-size: 12px;
+    line-height: 100%;
+    margin-bottom: 1rem;
+    padding-left: 16px;
+  }
+
+  .modules-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    &.logout {
+      position: absolute;
+      margin-bottom: 0px;
+      bottom: 16px;
+    }
+
+    .module-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      cursor: pointer;
+      height: 40px;
+      box-sizing: border-box;
+
+      .module-text {
+        font-size: 1rem;
+        line-height: 16px;
+        font-weight: 400;
+      }
+    }
+  }
+
+  &.open {
+    width: 16.5rem;
+    background: #fff;
+
+    .separator {
+      background-color: #001a72;
+      margin-bottom: 40px;
+    }
+
+    .collapsable-button {
+      right: 9px;
+      .icon-arrow {
+        background: #001a72;
+        transform: rotate(90deg);
+        display: flex;
+        width: 16px;
+        height: 16px;
+        display: flex;
+        width: 24px;
+        height: 24px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 0px 0px 8px 8px;
+      }
+    }
+
+    .modules-container {
+      .module-item {
+        color: #6e717b;
+        border-left: 4px solid transparent;
+
+        &.active {
+          border-radius: 8px;
+          border-left: 4px solid #001a72;
+          background: #f2f4fc;
+          color: #001a72;
+        }
+      }
+    }
+  }
+
+  &.closed {
+    background: white;
+
+    .separator {
+      background-color: white;
+      margin-bottom: 60px;
+    }
+
+    .modules-container {
+      .module-item {
+        color: #676a6d;
+        padding: 0;
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+
+        &.active {
+          border-radius: 8px;
+          border-left: 4px solid #001a72;
+          background: #f2f4fc;
+          color: #001a72;
+        }
+      }
+    }
+  }
+
+  &.isDrawer {
+    width: auto !important;
+  }
+}
+
+.icon-arrow-close {
+}

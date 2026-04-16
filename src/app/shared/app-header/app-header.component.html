@@ -1,0 +1,91 @@
+<header class="header">
+    <div *ngIf="deviceSize == size.LARGE && !sideBarOpen" class="collapsable-button" (click)="toggleSideBar()">
+        <div class="icon-arrow">
+            <growth-fit-icon icon="arrow-down" fill="#001A72" [width]="16" [height]="16"></growth-fit-icon>
+        </div>
+    </div>
+
+    <div class="container-top" [ngClass]="deviceSize">
+        <div class="nav-wrapper" [ngClass]="{'extra-margin': deviceSize == size.LARGE && !sideBarOpen, 'small': deviceSize == size.SMALL }">
+            <div class="left-section">
+                <div *ngIf="deviceSize !== size.LARGE" class="hamburger-icon" (click)="hamburgerClicked.emit()">
+                    <growth-fit-icon icon="hamburger" fill="white" [width]="24" [height]="24"></growth-fit-icon>
+                </div>
+
+                <ng-container *ngIf="currentModule?.childs && currentModule?.childs?.length > 0 else noChilds">
+
+                    <ng-container *ngFor="let child of currentModule.childs">
+                        <ng-container *ngIf="child.selected">
+
+                            <ng-container *ngIf="child.headerNavigation else plainText">
+                                <span class="text-header-navigation">
+                                    <ng-container *ngFor="let item of child.headerNavigation;let last = last">
+                                        <span 
+                                            class="text-header-child-route"
+                                            [routerLink]="'./'+currentModule.moduleRoute+'/'+item.url" 
+                                            routerLinkActive="active">
+                                            {{item.text}}
+                                        </span>
+                                        <ng-container *ngIf="!last">></ng-container>    
+                                    </ng-container>
+                                </span>
+
+                            </ng-container>
+
+                            <ng-template #plainText>
+                                <div>{{child.headerText}}</div>
+                            </ng-template>
+
+                        </ng-container>
+                        
+                    </ng-container>
+                    
+                </ng-container>
+
+                <ng-template #noChilds>
+                    <div>{{currentModule?.text}}</div>
+                </ng-template>
+                
+                
+            </div>
+            <div class="rigth-section" (click)="toggleMenuPopup()">
+                <div class="user-info" *ngIf="deviceSize !== size.SMALL" >
+                    <div class="name">{{userData.role_description}}</div>
+                    <div class="email">{{userData.email}}</div>
+                </div>
+                <div class="user-initials">
+                    {{userData.name}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="popupVisible" #userMenu tabindex="0" class="menu-popup-container" (blur)='onBlur()'>
+        <div class="user-initials">{{userData.name}}</div>
+        <div class="user-fullName">
+            <div class="name">{{userData.role_description}}</div>
+            <div class="email">{{userData.email}}</div>
+        </div>
+        
+        <!-- <div class="option-menu">
+            <growth-fit-icon icon="user" fill="#6E717B" [width]="24" [height]="24"></growth-fit-icon>
+            Editar perfil
+        </div>
+        <div class="option-menu" (click)="null">
+            <growth-fit-icon icon="policies" fill="#6E717B" [width]="24" [height]="20"></growth-fit-icon>
+            Cambiar contraseña
+        </div>
+        <ng-container *ngIf="hasRolAccessConfig">
+            <div class="option-menu" (click)="null">
+                <growth-fit-icon icon="settings" fill="#6E717B" [width]="24" [height]="24"></growth-fit-icon>
+                Configuración de proyecto
+            </div>
+        </ng-container> -->
+        <div class="separator"></div>
+        <div class="option-menu logout" (click)="logoutClicked.emit()">
+            <growth-fit-icon icon="logout" fill="#CB3A31" [width]="24" [height]="24"></growth-fit-icon>
+            <div>Cerrar sesión</div>
+        </div>
+    </div>
+</header>
+

@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+.ant-drawer-body {
+  padding: 0px !important;
+};
+
+.ant-menu {
+  line-height: normal !important;
+}
+
+.ant-menu-submenu::after {
+  border-bottom: none !important;
+};
+
+.ant-menu-submenu {
+  padding: 0px !important;
+}

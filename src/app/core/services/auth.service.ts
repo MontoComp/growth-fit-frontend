@@ -33,4 +33,9 @@ export class AuthService {
     const decodedJwtJsonData = jwtData && window.atob(jwtData);
     return decodedJwtJsonData && JSON.parse(decodedJwtJsonData);
   }
+
+  getUserDataFromStorage(): any {
+    const user = localStorage.getItem('userData');
+    return user ? JSON.parse(user) : null;
+  } 
 }

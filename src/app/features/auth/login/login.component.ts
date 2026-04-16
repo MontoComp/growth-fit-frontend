@@ -43,6 +43,12 @@ export class LoginComponent {
       localStorage.setItem('email', res.user.email);
       localStorage.setItem('role', res.user.role);
       localStorage.setItem('role_description', res.user.role_description);
+
+      const userData = res.user;
+      userData.name = userData.email ? userData.email[0].toUpperCase() : '-';
+      userData.role_description = userData.role_description;
+      userData.email = userData.email;
+      localStorage.setItem('userData', JSON.stringify(userData));
       this.router.navigate(['/dashboard']);
       this.showToastMessageV2('Inicio de sesión exitoso', 'SUCCESS');
     } catch (error) {

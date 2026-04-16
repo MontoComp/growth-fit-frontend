@@ -1,6 +1,49 @@
-<div class="layout">
-    <app-sidebar></app-sidebar>
-    <main class="content">
-        <router-outlet></router-outlet>
-    </main>
+<div class="layout-view-container">
+    <div class="sidebar-container" *ngIf="deviceSize() == size.LARGE">
+      <growth-fit-sidebar-v2 
+        [currentModule]="currentModule" 
+        [growthFitModules]="growthfitModules" 
+        [deviceSize]="deviceSize()"
+        [sideBarOpen]="sideBarOpen()"
+        (sideBarChange)="sideBarChanged($event)">
+      </growth-fit-sidebar-v2>
+    </div>
+    <div class="menu-container">
+      <div class="header-container">
+        <app-header
+          [currentModule]="currentModule"
+          [sideBarOpen]="sideBarOpen()"
+          [deviceSize]="deviceSize()"
+          (sideBarChange)="sideBarChanged($event)"
+          (hamburgerClicked)="toggleDrawer(true)"
+          (logoutClicked)="logout()">
+        </app-header>
+      </div>
+
+      <div class="layout-container-view">
+        <nz-drawer
+          [nzClosable]="false"
+          [nzVisible]="drawerVisible()"
+          [nzWidth]="deviceSize() == size.MEDIUM ? '380px' : '260px'"
+          nzPlacement="left"
+          (nzOnClose)="closeDrawer()"
+        >
+          <ng-container *nzDrawerContent>
+            <div class="sidebar-drawer">
+              <growth-fit-sidebar-v2 
+                [currentModule]="currentModule" 
+                [growthFitModules]="growthfitModules" 
+                [deviceSize]="deviceSize()"
+                [sideBarOpen]="sideBarOpen()"
+                [isDrawer]="true"
+                (sideBarChange)="sideBarChanged($event)"
+                (closeDrawer)="toggleDrawer(false)">
+              </growth-fit-sidebar-v2>
+            </div>
+
+          </ng-container>
+        </nz-drawer>
+        <router-outlet></router-outlet>    
+      </div>
+    </div>
 </div>
