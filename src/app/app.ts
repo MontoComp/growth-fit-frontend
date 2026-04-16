@@ -3,11 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { ToastModel } from './core/models/toast.model';
 import { ToastService } from './core/utils/toast.service';
 import { CommonModule } from '@angular/common';
-import { GeniaAlertV2Component } from './shared/genia-alert-v2/genia-alert-v2.component';
+import { GrowthFitAlertV2Component } from './shared/growth-fit-alert-v2/growth-fit-alert-v2.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule, GeniaAlertV2Component],
+  imports: [RouterOutlet, CommonModule, GrowthFitAlertV2Component],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

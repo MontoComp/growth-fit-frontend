@@ -5,13 +5,13 @@ import { ToastModel } from '../../core/models/toast.model';
 import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'genia-alert-v2',
+    selector: 'growth-fit-alert-v2',
     standalone: true,
     imports: [CommonModule],
-    templateUrl: './genia-alert-v2.component.html',
-    styleUrls: ['./genia-alert-v2.component.scss']
+    templateUrl: './growth-fit-alert-v2.component.html',
+    styleUrls: ['./growth-fit-alert-v2.component.scss']
 })
-export class GeniaAlertV2Component implements OnInit {
+export class GrowthFitAlertV2Component implements OnInit {
     @Input() customClass?: string = '';
     @Input() message: string = '';
     @Input() icon?: string = '';
