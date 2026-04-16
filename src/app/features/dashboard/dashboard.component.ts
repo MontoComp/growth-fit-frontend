@@ -92,7 +92,7 @@ export class DashboardComponent implements OnInit {
 
         this.stats.gyms = result.stats.totalGyms;
         this.stats.clients = result.stats.totalClients;
-        this.stats.activeClients = result.stats.pendingPayments;
+        this.stats.activeClients = result.stats.activeClients;
         this.stats.revenue = result.lastPayments.reduce((sum: any, p: { amount: any; }) => sum + p.amount, 0);
 
         this.lastPayments = result.lastPayments;

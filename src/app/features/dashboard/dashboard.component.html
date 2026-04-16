@@ -56,9 +56,9 @@
 
         <tbody>
           <tr *ngFor="let p of lastPayments">
-            <td>{{ p.clientName }}</td>
+            <td>{{ p.client }}</td>
             <td>S/ {{ p.amount }}</td>
-            <td>{{ p.date | date }}</td>
+            <td>{{ p.paid_until | date }}</td>
           </tr>
         </tbody>
       </table>
