@@ -1,0 +1,112 @@
+.switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  height: 40px;
+  color: #ffffff;
+  border: 1px solid #99aaff;
+  background-color: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-sizing: border-box;
+  &.medium {
+    height: 32px !important;
+  }
+
+  &.large {
+    height: 40px !important;
+  }
+
+  &.small {
+    height: 24px !important;
+
+    & .switch__left,
+    & .switch__right {
+      min-width: fit-content;
+    }
+  }
+
+  &.secondary-purple {
+    border: 1px solid #c099ff;
+    font-size: 10px;
+    font-weight: 700;
+
+    & .switch__left,
+    & .switch__right {
+      min-width: fit-content;
+    }
+
+    & .switch__left {
+      color: #c099ff;
+      &.selected {
+        color: #ffffff;
+        background-color: #7534e5;
+        border: 1px solid #7534e5;
+      }
+    }
+
+    & .switch__right {
+      color: #c099ff;
+      &.selected {
+        color: #ffffff;
+        background-color: #7534e5;
+        border: 1px solid #7534e5;
+      }
+    }
+  }
+
+  .switch-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    width: 100%;
+    span {
+      white-space: nowrap;
+      text-align: center;
+      font-size: 10px;
+      line-height: 10px;
+      font-weight: 600;
+    }
+  }
+
+  &_left,
+  &_right {
+    min-width: 60px;
+    display: flex;
+    height: inherit;
+    border-radius: 20px;
+    padding: 8px;
+    background-color: transparent;
+    color: #15192e;
+    cursor: pointer;
+    box-sizing: border-box;
+
+    &.selected {
+      color: #ffffff;
+      background-color: #0c3ee4;
+      border: 1px solid #0c3ee4;
+    }
+  }
+
+  &__disabled {
+    pointer-events: none;
+    border: 1px solid #dbdde6;
+    background-color: #f4f4f4;
+    .switch_left,
+    .switch_right {
+      color: #6c6e7a !important;
+      cursor: initial;
+
+      &.selected {
+        color: #ffffff;
+        background-color: #c7c8ca !important;
+        border: 1px solid #c7c8ca !important;
+      }
+    }
+  }
+}

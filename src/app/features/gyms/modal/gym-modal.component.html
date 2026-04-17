@@ -1,24 +1,35 @@
-<div class="modal-header">
-  <h5 class="modal-title">{{ gym ? 'Editar Gimnasio' : 'Crear Gimnasio' }}</h5>
-  <button type="button" class="btn-close" (click)="close()"></button>
-</div>
-
-<div class="modal-body">
-  <form [formGroup]="form">
-    <div class="mb-3">
-      <label class="form-label">Nombre</label>
-      <input class="form-control" formControlName="name" />
+<div class="modal-container">
+  <div class="modal-container__header">
+    <h5 class="modal-title">{{ gym ? 'Editar Gimnasio' : 'Nuevo Gimnasio' }}</h5>
+    <div class="cursor">
+      <growth-fit-icon icon="close" fill="#0C3EE4" [width]="24" [height]="24" (click)="close()"></growth-fit-icon>
     </div>
-    <div class="mb-3">
-      <label class="form-label">Dirección</label>
-      <input class="form-control" formControlName="address" />
-    </div>
-  </form>
-</div>
-
-<div class="modal-footer">
-  <button class="btn btn-secondary" (click)="close()">Cancelar</button>
-  <button class="btn btn-primary" (click)="save()" [disabled]="isSaving() || form.invalid">
-    {{ isSaving() ? 'Guardando...' : 'Guardar' }}
-  </button>
+  </div>
+  <div class="modal-container__body">
+    <form [formGroup]="form">
+      <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <growth-fit-input-text-v2
+            [id]="'name'"
+            formControlName="name"
+            [maxlength]="100"
+            [modifiedBorder]="false">
+        </growth-fit-input-text-v2>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Dirección</label>
+        <growth-fit-input-text-v2
+            [id]="'address'"
+            formControlName="address"
+            [maxlength]="100"
+            [modifiedBorder]="false">
+        </growth-fit-input-text-v2>
+      </div>
+    </form>
+  </div>
+  <div class="modal-container__footer">
+    <growth-fit-button text="Cancelar" type="secondary" (onClick)="close()"></growth-fit-button>
+    <growth-fit-button [text]="isSaving() ? 'Guardando...' : 'Guardar'" [disabled]="isSaving() || form.invalid"
+      (onClick)="save()"></growth-fit-button>
+  </div>
 </div>

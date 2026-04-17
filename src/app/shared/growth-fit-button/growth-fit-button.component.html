@@ -1,0 +1,14 @@
+<button
+  class="growth-fit-button"
+  [ngClass]="getClassButton()"
+  [ngStyle]="getStyleButton()"
+  [disabled]="disabled"
+  (click)="disabled ? null : onClick.emit(true)">
+  {{ text ? text : null }}
+  <growth-fit-icon
+    *ngIf="iconName"
+    [icon]="iconName"
+    [width]="iconSize"
+    [height]="iconSize">
+  </growth-fit-icon>
+</button>

@@ -1,0 +1,3 @@
+<div class="circle-separator">
+    <span *ngFor="let item of numbers; let last = last;" class="circle" [ngStyle]="{ 'margin-bottom': !last ? marginBotton+'px' : 'initial', 'background-color': this.color }"></span>
+</div>

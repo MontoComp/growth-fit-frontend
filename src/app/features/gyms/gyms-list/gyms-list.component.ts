@@ -6,11 +6,12 @@ import { GymModalComponent } from '../modal/gym-modal.component';
 import { firstValueFrom } from 'rxjs';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { GrowthFitButtonComponent } from '../../../shared/growth-fit-button/growth-fit-button.component';
 
 @Component({
   selector: 'app-gyms-list',
   standalone: true,
-  imports: [CommonModule, NgbModule, NzSkeletonModule],
+  imports: [CommonModule, NgbModule, NzSkeletonModule, GrowthFitButtonComponent],
   templateUrl: './gyms-list.component.html',
   styleUrl: './gyms-list.component.scss',
 })

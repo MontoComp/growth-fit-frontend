@@ -1,0 +1,12 @@
+.circle-separator {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  width: 2px;
+  .circle {
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+  }
+}

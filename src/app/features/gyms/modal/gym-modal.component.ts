@@ -3,12 +3,16 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { GymsService } from '../../../core/services/gyms.service';
+import { GrowthFitInputTextV2Component } from '../../../shared/growth-fit-input-text-v2/growth-fit-input-text-v2.component';
+import { GrowthFitButtonComponent } from '../../../shared/growth-fit-button/growth-fit-button.component';
+import { GrowthFitIconComponent } from '../../../shared/growth-fit-icon/growth-fit-icon.component';
 
 @Component({
   selector: 'app-gym-modal',
   standalone: true,
-  imports: [CommonModule, FormsModule,ReactiveFormsModule],
+  imports: [CommonModule, FormsModule,ReactiveFormsModule, GrowthFitInputTextV2Component, GrowthFitButtonComponent, GrowthFitIconComponent],
   templateUrl: './gym-modal.component.html',
+  styleUrl: './gym-modal.component.scss',
 })
 export class GymModalComponent {
   private gymsService = inject(GymsService);
@@ -23,7 +27,7 @@ export class GymModalComponent {
   constructor() {
     this.form = this.fb.group({
       name: ['', Validators.required],
-      address: [''],
+      address: ['', Validators.required],
     });
   }
 

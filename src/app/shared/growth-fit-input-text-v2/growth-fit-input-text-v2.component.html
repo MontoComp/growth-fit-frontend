@@ -1,0 +1,22 @@
+<div [ngClass]="{ 'growth-fit-input-mask-v2': true, focused: focused }">
+  <div [ngClass]="getInputClass()">
+    <label *ngIf="label" [for]="id">{{ label }}</label>
+    <input
+      #inputElement
+      autocomplete="off"
+      type="text"
+      [id]="id"
+      [name]="id"
+      [(ngModel)]="value"
+      [disabled]="disabled"
+      [placeholder]="placeholder"
+      [maxlength]="maxlength"
+      (focus)="onFocus()"
+      (input)="onInput()"
+      (blur)="onBlur()"
+    />
+  </div>
+  <div class="tooltip-container" *ngIf="inputFormControl.invalid && showTooltipErrorMessage">
+    <span [ngStyle]="getStyleTextError()">{{ errorMessage() }}</span>
+  </div>
+</div>

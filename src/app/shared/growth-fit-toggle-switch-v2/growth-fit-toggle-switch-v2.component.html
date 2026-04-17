@@ -1,0 +1,22 @@
+<div [ngClass]="getSwitchClass()">
+    <div (click)="onToggleClicked(true)" [ngClass]="{'switch__left': true, 'selected': this.value !== null && this.value }">
+        <div class="switch-container" >
+            <growth-fit-icon
+                *ngIf="iconLeft"
+                [icon]="iconLeft"
+                [fill]="value ? '#FFFFFF': useCurrentColor ? '' : '#0C3EE4'">
+            </growth-fit-icon>
+            <span>{{ leftText }}</span>
+        </div>
+    </div>
+    <div (click)="onToggleClicked(false)" [ngClass]="{'switch__right': true, 'selected': this.value !== null && !this.value }">
+        <div class="switch-container">
+            <growth-fit-icon
+                *ngIf="iconRight"
+                [icon]="iconRight"
+                [fill]="value ? useCurrentColor ? '' : '#0C3EE4' : '#FFFFFF'">
+            </growth-fit-icon>
+            <span>{{ rightText }}</span>
+        </div>
+    </div>
+</div>

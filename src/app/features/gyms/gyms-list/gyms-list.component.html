@@ -4,7 +4,9 @@
       <span class="breadcrumb-item active">Gimnasios</span>
     </div>
     <div>
-      <button class="btn primary" [disabled]="gyms.length > 1" (click)="openModal()">+ Crear gimnasio</button>
+      <growth-fit-button [text]="'Nuevo gimnasio'" [disabled]="isLoading() || gyms.length > 1" iconName="plus"
+        iconColor="#FFFFFF" (onClick)="openModal()">
+      </growth-fit-button>
     </div>
   </div>
 
@@ -53,10 +55,7 @@
         <tr class="sticky header-cell">
           <td class="bolder" [style.width.px]="120">Nombre</td>
         </tr>
-        <ng-container
-          [ngTemplateOutlet]="loadingTable"
-          [ngTemplateOutletContext]="{ totalColumns: 1 }"
-        >
+        <ng-container [ngTemplateOutlet]="loadingTable" [ngTemplateOutletContext]="{ totalColumns: 1 }">
         </ng-container>
       </table>
     </div>
@@ -66,10 +65,7 @@
           <td class="bolder" [style.width.px]="120">Dirección</td>
           <td class="bolder" [style.width.px]="180">Acciones</td>
         </tr>
-        <ng-container
-          [ngTemplateOutlet]="loadingTable"
-          [ngTemplateOutletContext]="{ totalColumns: 2 }"
-        >
+        <ng-container [ngTemplateOutlet]="loadingTable" [ngTemplateOutletContext]="{ totalColumns: 2 }">
         </ng-container>
       </table>
     </div>
@@ -80,13 +76,7 @@
 <ng-template #loadingTable let-totalColumns="totalColumns">
   <tr *ngFor="let tr of getRowsForSkeleton(4)">
     <td *ngFor="let td of getRowsForSkeleton(totalColumns)">
-      <nz-skeleton-element
-        nzType="input"
-        nzSize="small"
-        class="skeleton"
-        style="width: 100%"
-        [nzActive]="true"
-      >
+      <nz-skeleton-element nzType="input" nzSize="small" class="skeleton" style="width: 100%" [nzActive]="true">
       </nz-skeleton-element>
     </td>
   </tr>

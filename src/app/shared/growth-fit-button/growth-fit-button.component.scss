@@ -1,0 +1,193 @@
+:host button {
+  &.growth-fit-button {
+    display: flex;
+    width: -webkit-fill-available;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+    line-height: 100%;
+    border: 1px solid transparent;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &--primary {
+      background: #0c3ee4;
+      font-weight: 700;
+      color: #ffffff;
+      &:hover {
+        background: #001a72;
+      }
+      &:disabled {
+        background: #f6f6f9;
+        color: #6c6e7a;
+      }
+    }
+
+    &--primary-purple {
+      background: #7534e5;
+      font-weight: 700;
+      color: #ffffff;
+      &:hover {
+        background: #3b1282;
+      }
+      &:disabled {
+        background: #f6f6f9;
+        color: #6c6e7a;
+      }
+    }
+
+    &--primary-teal {
+      background: #01a2c2;
+      font-weight: 700;
+      color: #ffffff;
+      &:hover {
+        background: #06778e;
+      }
+      &:disabled {
+        background: #f6f6f9;
+        color: #6c6e7a;
+      }
+    }
+
+    &--secondary {
+      border: 1px solid #0c3ee4;
+      background: #ffffff;
+      color: #0c3ee4;
+      font-weight: 700;
+      &:hover {
+        color: #001a72;
+        border: 1px solid #001a72;
+      }
+      &:disabled {
+        border: 1px solid #dbdde6;
+        color: #dbdde6;
+      }
+    }
+
+    &--secondary-purple {
+      border: 1px solid #7534e5;
+      background: #ffffff;
+      color: #7534e5;
+      font-weight: 700;
+      &:hover {
+        color: #3b1282;
+        border: 1px solid #3b1282;
+      }
+      &:disabled {
+        border: 1px solid #dbdde6;
+        color: #dbdde6;
+      }
+    }
+
+    &--secondary-teal {
+      border: 1px solid #01a2c2;
+      background: #ffffff;
+      color: #01a2c2;
+      font-weight: 700;
+      &:hover {
+        color: #06778e;
+        border: 1px solid #06778e;
+      }
+      &:disabled {
+        border: 1px solid #dbdde6;
+        color: #dbdde6;
+      }
+    }
+
+    &--tertiary {
+      background: transparent;
+      font-weight: 700;
+      color: #0c3ee4;
+      &:hover {
+        color: #001a72;
+      }
+      &:disabled {
+        color: #dbdde6;
+      }
+    }
+
+    &--tertiary-teal {
+      background: transparent;
+      font-weight: 700;
+      color: #01a2c2;
+      &:hover {
+        color: #06778e;
+      }
+      &:disabled {
+        color: #dbdde6;
+      }
+    }
+
+    &--tertiary-purple {
+      background: transparent;
+      font-weight: 700;
+      color: #7534e5;
+      &:hover {
+        color: #3b1282;
+      }
+      &:disabled {
+        color: #dbdde6;
+      }
+    }
+
+    &--tertiary-pink {
+      background: transparent;
+      font-weight: 700;
+      color: #e1197a;
+      &:hover {
+        color: #8a1035;
+      }
+      &:disabled {
+        color: #6c6e7a;
+      }
+    }
+
+    &--tertiary-crimson {
+      background: transparent;
+      font-weight: 700;
+      color: #e42525;
+      &:hover {
+        color: #601010;
+      }
+      &:disabled {
+        color: #dbdde6;
+      }
+    }
+
+    &--tertiary-midnight {
+      background: transparent;
+      font-weight: 700;
+      color: #001a72;
+      &:hover {
+        color: #05164d;
+      }
+      &:disabled {
+        color: #dbdde6;
+      }
+    }
+
+    &--small {
+      font-size: 10px;
+      height: 24px;
+      padding: 8px;
+      border-radius: 4px;
+    }
+
+    &--medium {
+      font-size: 12px;
+      height: 32px;
+      padding: 8px 16px;
+      border-radius: 8px;
+    }
+
+    &--large {
+      font-size: 16px;
+      height: 40px;
+      padding: 8px 16px;
+      border-radius: 8px;
+    }
+  }
+}
